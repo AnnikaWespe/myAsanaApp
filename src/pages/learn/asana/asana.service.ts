@@ -9,10 +9,10 @@ export class AsanaService {
   playedBefore: boolean;
   newAsanaArray: Asana[] = [];
   asanaBlock0 = new AsanaBlock([], 0);
-  asanaBlock1 = new AsanaBlock([], 0.1);
-  asanaBlock2 = new AsanaBlock([], 0.2);
-  asanaBlock3 = new AsanaBlock([], 0.3);
-  asanaBlock4 = new AsanaBlock([], 0.4);
+  asanaBlock1 = new AsanaBlock([], 0.1); // around 6 minutes
+  asanaBlock2 = new AsanaBlock([], 0.2); // around 12 minutes
+  asanaBlock3 = new AsanaBlock([], 0.3); // around 18 minutes
+  asanaBlock4 = new AsanaBlock([], 0.4); // around 24 minutes
   nowInHours: number;
 
 
@@ -28,6 +28,7 @@ export class AsanaService {
   }
 
   private initiateGame() {
+    console.log("initiating game");
     this.playedBefore = true;
     localStorage.setItem("playedBefore", "true");
     this.newAsanaArray = INITIAL_ASANA_LIST;
@@ -37,6 +38,7 @@ export class AsanaService {
   }
 
   private resumeGame() {
+    console.log("resuming game");
     this.getDataFromLocalStorage();
     this.shuffleAll();
   }
@@ -56,8 +58,8 @@ export class AsanaService {
     }
   }
 
-  addSixNewAsana() {
-    let newAsanaForBlock0 = this.newAsanaArray.splice(0, 6);
+  addNewAsana(number) {
+    let newAsanaForBlock0 = this.newAsanaArray.splice(0, number);
     Array.prototype.push.apply(this.asanaBlock0.asanaArray, newAsanaForBlock0);
     console.log(this.asanaBlock0);
     this.updateLocalStorage();
@@ -87,7 +89,7 @@ export class AsanaService {
   }
 
   private checkAgeAndIfNonEmpty(asanaBlock: AsanaBlock) {
-    console.log(this.nowInHours - asanaBlock.timeThenInHours);
+    console.log("Zeitunterschied in Minuten", (this.nowInHours - asanaBlock.timeThenInHours)*60);
     if (asanaBlock.asanaArray.length && (this.nowInHours - asanaBlock.timeThenInHours) >= asanaBlock.repeatAfterTimeIntervalInHours) {
       return true;
     }
@@ -103,10 +105,13 @@ export class AsanaService {
         let block: AsanaBlock = this["asanaBlock" + (numberOfBlock + 1)];
         block.asanaArray.push(asana);
         block.timeThenInHours = this.nowInHours;
+        console.log(this.nowInHours);
+        console.log(block);
         }
     else if (numberOfBlock < 4){
         this.asanaBlock0.asanaArray.push(asana);
         }
+    this.updateLocalStorage();
   }
 
   private shuffleAll() {

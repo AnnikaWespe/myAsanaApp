@@ -14,7 +14,7 @@ import { LearnComponent } from '../pages/learn/learn.component';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = LearnComponent;
 
   pages: Array<{title: string, component: any}>;
 

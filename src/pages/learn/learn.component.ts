@@ -59,7 +59,7 @@ export class LearnComponent {
 
 
   addSixNewAsana(){
-    this.currentAsana = this.asanaService.addSixNewAsana();
+    this.currentAsana = this.asanaService.addNewAsana(6);
     console.log(this.currentAsana);
     this.stage = "question"
   }
