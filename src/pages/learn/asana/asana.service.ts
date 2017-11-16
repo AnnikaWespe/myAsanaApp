@@ -89,7 +89,7 @@ export class AsanaService {
   }
 
   private checkAgeAndIfNonEmpty(asanaBlock: AsanaBlock) {
-    console.log("Zeitunterschied in Minuten", (this.nowInHours - asanaBlock.timeThenInHours)/60);
+    console.log("Zeitunterschied in Minuten", (this.nowInHours - asanaBlock.timeThenInHours)*60);
     if (asanaBlock.asanaArray.length && (this.nowInHours - asanaBlock.timeThenInHours) >= asanaBlock.repeatAfterTimeIntervalInHours) {
       return true;
     }

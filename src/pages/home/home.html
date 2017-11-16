@@ -8,5 +8,14 @@
 </ion-header>
 
 <ion-content padding>
-
+<div *ngIf="afAuth.authState | async; let user; else showLogin">
+      <h1>Hello {{ user.displayName }}!</h1>
+      <button (click)="logout()">Logout</button>
+    </div>
+    <ng-template #showLogin>
+      <p>Please login.</p>
+      <button (click)="loginWithGoogle()">Login with Google</button>
+      <button (click)="loginWithFacebook()">Login with Facebook</button>
+      <button (click) = "loginWithEmail()">Login with Email</button>
+    </ng-template>
 </ion-content>

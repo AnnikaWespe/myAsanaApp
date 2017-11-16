@@ -4,10 +4,14 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Facebook } from '@ionic-native/facebook'
+
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { LoginPage } from '../pages/login/login';
 import { LearnComponent } from '../pages/learn/learn.component';
 import { AsanaService } from '../pages/learn/asana/asana.service';
 
@@ -28,6 +32,7 @@ export const firebaseConfig = {
     MyApp,
     HomePage,
     ListPage,
+    LoginPage,
     LearnComponent
   ],
   imports: [
@@ -41,12 +46,15 @@ export const firebaseConfig = {
     MyApp,
     HomePage,
     ListPage,
+    LoginPage,
     LearnComponent
   ],
   providers: [
     StatusBar,
     SplashScreen,
     AsanaService,
+    AngularFireAuth,
+    Facebook,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
