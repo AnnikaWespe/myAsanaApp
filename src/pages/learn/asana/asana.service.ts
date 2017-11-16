@@ -18,7 +18,7 @@ export class AsanaService {
 
   constructor() {
     this.playedBefore = (localStorage.getItem("playedBefore") === "true");
-    this.nowInHours = new Date().getTime() / 3600000;
+    this.nowInHours = new Date().getTime() / 3600000 ;
     if (!this.playedBefore) {
       this.initiateGame();
     }
@@ -89,7 +89,7 @@ export class AsanaService {
   }
 
   private checkAgeAndIfNonEmpty(asanaBlock: AsanaBlock) {
-    console.log("Zeitunterschied in Minuten", (this.nowInHours - asanaBlock.timeThenInHours)*60);
+    console.log("Zeitunterschied in Minuten", (this.nowInHours - asanaBlock.timeThenInHours)/60);
     if (asanaBlock.asanaArray.length && (this.nowInHours - asanaBlock.timeThenInHours) >= asanaBlock.repeatAfterTimeIntervalInHours) {
       return true;
     }
