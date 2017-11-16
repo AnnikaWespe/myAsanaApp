@@ -14,8 +14,20 @@
     </div>
     <ng-template #showLogin>
       <p>Please login.</p>
+      <ion-item>
+    		<ion-label color="primary" stacked>Email adress</ion-label>
+    		<ion-input type="email" placeholder="example@host.com" [(ngModel)]="emailAdress"></ion-input>
+  	   </ion-item>
+       <ion-item>
+    		<ion-label color="primary" stacked>Password</ion-label>
+    		<ion-input type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
+  	    </ion-item>
+
+
+      <button (click) = "loginWithEmail()">Sign in</button>
+      <span (click) = "createAccountWithEmail()">Sign up with email</span>
+
       <button (click)="loginWithGoogle()">Login with Google</button>
       <button (click)="loginWithFacebook()">Login with Facebook</button>
-      <button (click) = "loginWithEmail()">Login with Email</button>
     </ng-template>
 </ion-content>
