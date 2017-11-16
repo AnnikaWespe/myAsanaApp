@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController} from 'ionic-angular';
 import {AsanaService} from "./asana/asana.service";
 import {Asana} from "./asana/asana.model";
 
@@ -10,61 +10,60 @@ import {Asana} from "./asana/asana.model";
 export class LearnComponent {
 
   currentAsana: {
-      asana: Asana,
-      asanaBlockName: string;
+    asana: Asana,
+    asanaBlockName: string;
   }
   stage = 'question';
   stillNewAsanaToAdd;
 
   constructor(private asanaService: AsanaService) {
     let object = this.asanaService.next();
-    if(object){
+    if (object) {
       this.currentAsana = object;
     }
-    else{
-        let boxesInfoObject = this.asanaService.stillAsanaAvailable();
-        if(boxesInfoObject.stillAsanaAvailable){
+    else {
+      let boxesInfoObject = this.asanaService.stillAsanaAvailable();
+      if (boxesInfoObject.stillAsanaAvailable) {
         this.stage = 'finishedForToday';
         this.stillNewAsanaToAdd = boxesInfoObject.stillNewAsanaToAdd;
-          }
-        else {
-          this.stage = "finished";
-          }
       }
+      else {
+        this.stage = "finished";
+      }
+    }
   }
 
 
-
-  getAnswer(){
+  getAnswer() {
     this.stage = 'answer';
   }
 
-  next(rightAnswer: boolean){
+  next(rightAnswer: boolean) {
     let object = this.asanaService.next(this.currentAsana.asanaBlockName, rightAnswer);
-    if(object){
+    if (object) {
       this.currentAsana = object;
-    //  this.stage = "question";
+      //  this.stage = "question";
     }
-    else{
-        let boxesInfoObject = this.asanaService.stillAsanaAvailable()
-        if(boxesInfoObject.stillAsanaAvailable){
+    else {
+      let boxesInfoObject = this.asanaService.stillAsanaAvailable()
+      if (boxesInfoObject.stillAsanaAvailable) {
         this.stage = 'finishedForToday';
         this.stillNewAsanaToAdd = boxesInfoObject.stillNewAsanaToAdd;
-          }
-        else {
-          this.stage = "finished";
-          }
+      }
+      else {
+        this.stage = "finished";
+      }
     }
   }
 
 
-  addSixNewAsana(){
+  addSixNewAsana() {
     this.currentAsana = this.asanaService.addNewAsana(6);
     console.log(this.currentAsana);
     this.stage = "question"
   }
 
-  reset(){
+  reset() {
     this.asanaService.resetGame();
     this.currentAsana = this.asanaService.next();
   }

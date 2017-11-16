@@ -8,13 +8,13 @@
 </ion-header>
 
 <ion-content>
-  
-  <div padding *ngIf="stage === 'question'" class = "question">
-      <h1>{{currentAsana.asana.image}}</h1>
+
+  <div padding *ngIf="stage === 'question'" class="question">
+    <h1>{{currentAsana.asana.image}}</h1>
     <button (click)="getAnswer()">Give me the answer!</button>
   </div>
 
-  <div *ngIf="stage === 'answer'" class = "answer">
+  <div *ngIf="stage === 'answer'" class="answer">
     <h1>{{currentAsana.asana.image}}</h1>
     <h1>{{currentAsana.asana.name}}</h1>
 
@@ -22,15 +22,15 @@
     <button (click)="next(false)">Nope, didn't see that coming.</button>
   </div>
 
-  <div *ngIf="stage === 'finishedForToday'" class = "finishedForToday">
-      <p>You're done for today!</p>
-  <button (click) = "addSixNewAsana()" *ngIf = "stillNewAsanaToAdd">Learn some new asana</button>
-  <button (click) = "reset()" *ngIf = "!stillNewAsanaToAdd">Fresh Start?</button>
+  <div *ngIf="stage === 'finishedForToday'" class="finishedForToday">
+    <p>You're done for today!</p>
+    <button (click)="addSixNewAsana()" *ngIf="stillNewAsanaToAdd">Learn some new asana</button>
+    <button (click)="reset()" *ngIf="!stillNewAsanaToAdd">Fresh Start?</button>
   </div>
 
-  <div *ngIf="stage === 'finished'" class = "finished">
-      <p>You've learned all asanas in this series!</p>
-  <button (click) = "reset()">Reset and play again</button>
+  <div *ngIf="stage === 'finished'" class="finished">
+    <p>You've learned all asanas in this series!</p>
+    <button (click)="reset()">Reset and play again</button>
   </div>
 
 </ion-content>
